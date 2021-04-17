@@ -1,5 +1,7 @@
 package cl.descalante.app.clientes.responses;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -25,11 +27,14 @@ public class ResponseClienteReceta {
 	@JsonProperty("clie_instagram")
 	private String clieInstagram;
 	@JsonProperty("clie_dateborn")
-	private String clieDateBorn;
+	private Date clieDateBorn;
 	@JsonProperty("clie_gender")
 	private String clieGender;
 	@JsonProperty("clie_dateregist")
-	private String clieDateRegist;
-	private Object data;
+	private Date clieDateRegist;
+	private Object receta;
+	public ResponseClienteReceta() {
+		super();
+	}
 
 }

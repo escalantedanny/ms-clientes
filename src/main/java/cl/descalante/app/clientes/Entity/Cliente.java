@@ -1,6 +1,7 @@
 package cl.descalante.app.clientes.Entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class Cliente implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	
 	@Column(name = "clie_rut")
 	private String clieRut;
@@ -39,11 +40,11 @@ public class Cliente implements Serializable{
 	@Column(name = "clie_instagram")
 	private String clieInstagram;
 	@Column(name = "clie_dateborn")
-	private String clieDateBorn;
+	private Date clieDateBorn;
 	@Column(name = "clie_gender")
 	private String clieGender;
 	@Column(name = "clie_dateregist")
-	private String clieDateRegist;
+	private Date clieDateRegist;
 	
 	private static final long serialVersionUID = -922472834459252187L;
 

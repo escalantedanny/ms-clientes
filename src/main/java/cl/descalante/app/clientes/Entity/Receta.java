@@ -18,35 +18,35 @@ public class Receta implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column(name = "Le_Od_Esf")
+	private long id;
+	@Column(name = "le_od_esf")
 	private String leOdEsf;
-	@Column(name = "Le_Od_Cil")
+	@Column(name = "le_Od_Cil")
 	private String leOdCil;
-	@Column(name = "Le_Od_Eje")
+	@Column(name = "le_Od_Eje")
 	private String leOdEje;
-	@Column(name = "Le_Oi_Esf")
+	@Column(name = "le_oi_esf")
 	private String leOiEsf;
-	@Column(name = "Le_Oi_Cil")
+	@Column(name = "le_oi_cil")
 	private String leOiCil;
-	@Column(name = "Le_Oi_Eje")
+	@Column(name = "le_oi_eje")
 	private String leOiEje;
-	@Column(name = "Ce_Od_Esf")
+	@Column(name = "ce_Od_esf")
 	private String ceOdEsf;
-	@Column(name = "Ce_Od_Cil")
+	@Column(name = "ce_Od_cil")
 	private String ceOdCil;
-	@Column(name = "Ce_Od_Eje")
+	@Column(name = "ce_Od_eje")
 	private String ceOdEje;
-	@Column(name = "Ce_Oi_Esf")
+	@Column(name = "ce_oi_esf")
 	private String ceOiEsf;
-	@Column(name = "Ce_Oi_Cil")
+	@Column(name = "ce_oi_cil")
 	private String ceOiCil;
-	@Column(name = "Ce_Oi_Eje")
+	@Column(name = "ce_oi_eje")
 	private String ceOiEje;
 	@Column(name = "adherencia")
 	private String adherencia;
-	@Column(name = "id_cliente")
-	private int idCliente;
+	@Column(name = "idcliente")
+	private long idCliente;
 	private String fecha;
 	private int estatus;
 	@Column(name = "id_orden_trabajo")
