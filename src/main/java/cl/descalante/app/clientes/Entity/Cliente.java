@@ -23,26 +23,37 @@ public class Cliente implements Serializable{
 	
 	@Column(name = "clie_rut")
 	private String clieRut;
+	
 	@Column(name = "clie_status")
 	private String cliestatus;
+	
 	@Column(name = "clie_nombre")
 	private String clieNombre;
+	
 	@Column(name = "clie_addr")
 	private String clieAddress;
+	
 	@Column(name= "clie_phone")
 	private String cliePhone;
+	
 	@Column(name = "clie_email")
 	private String clieEmail;
+	
 	@Column(name = "clie_facebook")
 	private String clieFacebook;
+	
 	@Column(name = "clie_twitter")
 	private String clieTwitter;
+	
 	@Column(name = "clie_instagram")
 	private String clieInstagram;
+	
 	@Column(name = "clie_dateborn")
 	private Date clieDateBorn;
+	
 	@Column(name = "clie_gender")
 	private String clieGender;
+	
 	@Column(name = "clie_dateregist")
 	private Date clieDateRegist;
 	

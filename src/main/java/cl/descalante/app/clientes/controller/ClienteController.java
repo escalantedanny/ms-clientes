@@ -44,7 +44,7 @@ public class ClienteController {
 	}
 	
 	@DeleteMapping("/cliente/{id}")
-	public void deleteCliente(@RequestBody Long id) throws CustomError {
+	public void deleteCliente(@PathVariable Long id) throws CustomError {
 		clienteService.deleteById(id);
 	}
 	

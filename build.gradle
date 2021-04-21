@@ -26,6 +26,17 @@ group = 'cl.descalante.app.clientes'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.11'
 
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File project server config',
+        	'Implementation-Version': version,
+        	'Main-Class': 'cl.descalante.app.clientes.MsClientesApplication'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
 bootJar {
     baseName = 'ms-clientes'
 }

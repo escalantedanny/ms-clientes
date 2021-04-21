@@ -1,8 +1,12 @@
 package cl.descalante.app.clientes.responses;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import cl.descalante.app.clientes.Entity.Orden;
+import cl.descalante.app.clientes.Entity.Receta;
 import lombok.Data;
 
 @Data
@@ -32,7 +36,8 @@ public class ResponseClienteReceta {
 	private String clieGender;
 	@JsonProperty("clie_dateregist")
 	private Date clieDateRegist;
-	private Object receta;
+	private List<Receta> receta;
+	private List<Orden> orden;
 	public ResponseClienteReceta() {
 		super();
 	}

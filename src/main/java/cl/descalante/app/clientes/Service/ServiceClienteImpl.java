@@ -5,12 +5,15 @@ import java.util.List;
 import javax.script.ScriptException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cl.descalante.app.clientes.Entity.Cliente;
+import cl.descalante.app.clientes.Entity.Orden;
 import cl.descalante.app.clientes.Entity.Receta;
 import cl.descalante.app.clientes.dao.ClientesDao;
+import cl.descalante.app.clientes.dao.OrdenDao;
 import cl.descalante.app.clientes.dao.RecetaDao;
 import cl.descalante.app.clientes.exception.CustomError;
 import cl.descalante.app.clientes.responses.ResponseClienteReceta;
@@ -26,24 +29,27 @@ public class ServiceClienteImpl implements IClienteService {
 	@Autowired
 	private RecetaDao recetaDao;
 	
+	@Autowired
+	private OrdenDao ordenesDao;
+	
 	@Override
 	@Transactional(readOnly = true)
 	public List<Cliente> findAll() throws CustomError {
 		try {			
 			return (List<Cliente>) clientesDao.findAll();
 		} catch (Exception e) {
-			throw new CustomError("error en la busqueda de clientes");
+			throw new CustomError("error busqueda de clientes");
 		}
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public ResponseClienteReceta findById(Long id) throws CustomError{
 		
 		ResponseClienteReceta resultado = new ResponseClienteReceta();
 		try {
 			Cliente cliente = clientesDao.findById(id).orElse(null);
 			List<Receta> receta = recetaDao.findByIdcliente(cliente.getId());
+			List<Orden> orden = ordenesDao.findByIdcliente(cliente.getId());
 			resultado.setClieRut(cliente.getClieRut());
 			resultado.setCliestatus(cliente.getCliestatus());
 			resultado.setClieNombre(cliente.getClieNombre());
@@ -57,12 +63,12 @@ public class ServiceClienteImpl implements IClienteService {
 			resultado.setClieGender(cliente.getClieGender());
 			resultado.setClieDateRegist(cliente.getClieDateRegist());
 			resultado.setReceta(receta);
+			resultado.setOrden(orden);
 			log.info("receta es {} ", receta);
 			return resultado;
 		} catch (Exception e) {
-			if(resultado.getClieRut() == null) throw new CustomError("rut invalido");
-			else if(id == null) throw new CustomError("id cliente es obligartorio");
-			else throw new CustomError("cliente invalido");
+			if(id == null) throw new CustomError("id cliente es obligartorio");
+			else throw new CustomError("cliente invalido o no existe");
 		}
 	}
 
@@ -76,7 +82,7 @@ public class ServiceClienteImpl implements IClienteService {
 			else if(cliente.getClieAddress() == null) throw new CustomError("direccion es obligatoria");
 			else if(cliente.getCliePhone() == null) throw new CustomError("telefono es obligatorio");
 			else if(cliente.getClieEmail() == null) throw new CustomError("email es ogligatorio");
-			else throw new CustomError("usuario invalido");
+			else throw new CustomError("usuario invalido o no existe");
 		}
 	}
 
@@ -86,7 +92,7 @@ public class ServiceClienteImpl implements IClienteService {
 			clientesDao.deleteById(id);
 		} catch (Exception e) {
 			if(id == null) throw new CustomError("id cliente es obligartorio");
-			else throw new CustomError("cliente invalido");
+			else throw new EmptyResultDataAccessException("cliente invalido o no existe", 0);
 		}
 	}
 
